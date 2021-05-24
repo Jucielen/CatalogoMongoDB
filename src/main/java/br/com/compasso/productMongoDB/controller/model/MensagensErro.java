@@ -1,4 +1,4 @@
-package br.com.compasso.productMondDB.controller.model;
+package br.com.compasso.productMongoDB.controller.model;
 
 public class MensagensErro {
 	Integer status_code;

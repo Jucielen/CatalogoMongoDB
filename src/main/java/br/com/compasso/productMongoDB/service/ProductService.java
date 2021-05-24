@@ -1,4 +1,4 @@
-package br.com.compasso.productMondDB.service;
+package br.com.compasso.productMongoDB.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.compasso.productMondDB.controller.dto.ProductDto;
-import br.com.compasso.productMondDB.controller.model.Product;
-import br.com.compasso.productMondDB.controller.repository.ProductRepository;
+import br.com.compasso.productMongoDB.controller.dto.ProductDto;
+import br.com.compasso.productMongoDB.controller.model.Product;
+import br.com.compasso.productMongoDB.controller.repository.ProductRepository;
 
 @Service
 public class ProductService {

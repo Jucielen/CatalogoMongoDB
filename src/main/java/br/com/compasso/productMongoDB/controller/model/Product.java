@@ -1,4 +1,4 @@
-package br.com.compasso.productMondDB.controller.model;
+package br.com.compasso.productMongoDB.controller.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

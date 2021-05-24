@@ -1,8 +1,8 @@
-package br.com.compasso.productMondDB.controller.form;
+package br.com.compasso.productMongoDB.controller.form;
 
 import javax.validation.constraints.NotBlank;
 
-import br.com.compasso.productMondDB.controller.model.Product;
+import br.com.compasso.productMongoDB.controller.model.Product;
 
 public class ProductForm {
 	@NotBlank

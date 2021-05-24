@@ -1,4 +1,4 @@
-package br.com.compasso.productMondDB.controller.repository;
+package br.com.compasso.productMongoDB.controller.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import br.com.compasso.productMondDB.controller.model.Product;
+import br.com.compasso.productMongoDB.controller.model.Product;
 
 public interface ProductRepository extends MongoRepository<Product, String>{
 	

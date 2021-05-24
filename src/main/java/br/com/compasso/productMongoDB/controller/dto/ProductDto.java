@@ -1,9 +1,9 @@
-package br.com.compasso.productMondDB.controller.dto;
+package br.com.compasso.productMongoDB.controller.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.compasso.productMondDB.controller.model.Product;
+import br.com.compasso.productMongoDB.controller.model.Product;
 
 public class ProductDto {
 	private String id;

@@ -1,4 +1,4 @@
-package br.com.compasso.productMondDB.controller;
+package br.com.compasso.productMongoDB.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.compasso.productMondDB.controller.dto.ProductDto;
-import br.com.compasso.productMondDB.controller.form.ProductForm;
-import br.com.compasso.productMondDB.controller.model.MensagensErro;
-import br.com.compasso.productMondDB.controller.model.Product;
-import br.com.compasso.productMondDB.controller.repository.ProductRepository;
-import br.com.compasso.productMondDB.service.ProductService;
+import br.com.compasso.productMongoDB.controller.dto.ProductDto;
+import br.com.compasso.productMongoDB.controller.form.ProductForm;
+import br.com.compasso.productMongoDB.controller.model.MensagensErro;
+import br.com.compasso.productMongoDB.controller.model.Product;
+import br.com.compasso.productMongoDB.controller.repository.ProductRepository;
+import br.com.compasso.productMongoDB.service.ProductService;
 
 @RestController
 @RequestMapping("/products")
