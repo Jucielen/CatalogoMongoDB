@@ -27,22 +27,22 @@ import br.com.compasso.productMondDB.controller.form.ProductForm;
 import br.com.compasso.productMondDB.controller.model.MensagensErro;
 import br.com.compasso.productMondDB.controller.model.Product;
 import br.com.compasso.productMondDB.controller.repository.ProductRepository;
+import br.com.compasso.productMondDB.service.ProductService;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 	@Autowired
-	ProductRepository repository;
+	ProductService service;
 	
 	@GetMapping
 	public List<ProductDto> lista(){
-		List<Product> produtos = repository.findAll();
-		return ProductDto.converter(produtos);
+		return service.findAll();
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> detalhar(@PathVariable String id){
-		Optional <Product> prod = repository.findById(id);
+		Optional <Product> prod = service.findById(id);
 		if(prod.isPresent()) {
 			return ResponseEntity.ok(new ProductDto(prod.get()));
 		}
@@ -61,7 +61,7 @@ public class ProductController {
 			max_price= 10000.0;
 		}
 		if (q==null) {
-			List<Product> produtos = repository.findByMinMaxPrice(min_price, max_price);
+			List<Product> produtos = service.findByMinMaxPrice(min_price, max_price);
 			lista = ProductDto.converter(produtos);
 		}else {
 			// preenchimento da q="name=exemplo,description=exemplo"
@@ -72,7 +72,7 @@ public class ProductController {
 			String[] paramDescription = split[1].split("=");
 			String description = paramDescription[1].replace("\"", "");
 			System.out.println(name+" "+description);		
-			List<Product> produtos = repository.findBySearch(min_price, max_price, name, description);
+			List<Product> produtos = service.findBySearch(min_price, max_price, name, description);
 			lista = ProductDto.converter(produtos);
 		}
 		return lista;
@@ -86,7 +86,7 @@ public class ProductController {
 		}
 		
 		Product prod = form.converter();
-		repository.save(prod);
+		service.save(prod);
 		URI uri = uriBuilder.path("/products/{id}").buildAndExpand(prod.getId()).toUri();
 		return ResponseEntity.created(uri).body(new ProductDto(prod));
 		
@@ -94,9 +94,10 @@ public class ProductController {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> atualizar(@PathVariable String id, @RequestBody @Valid ProductForm form, BindingResult result){
-		Optional<Product> optional = repository.findById(id);
+		Optional<Product> optional = service.findById(id);
 		if(optional.isPresent()) {
-			Product prod = form.atualizar(id, repository);
+			Product prod = form.atualizar(optional.get());
+			service.save(prod);
 			return ResponseEntity.ok().body(new ProductDto(prod));
 		}
 		return ResponseEntity.status(404).body(new MensagensErro(404,"Produto não encontrado para a realização de alterações"));
@@ -104,9 +105,9 @@ public class ProductController {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletar(@PathVariable String id){
-		Optional<Product> optional = repository.findById(id);
+		Optional<Product> optional = service.findById(id);
 		if(optional.isPresent()) {
-			repository.deleteById(id);
+			service.deleteById(id);
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.status(404).body(new MensagensErro(404,"Produto não encontrado para a realização de remoção"));

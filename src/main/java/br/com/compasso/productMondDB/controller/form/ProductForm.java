@@ -1,11 +1,8 @@
 package br.com.compasso.productMondDB.controller.form;
 
-import java.util.Optional;
-
 import javax.validation.constraints.NotBlank;
 
 import br.com.compasso.productMondDB.controller.model.Product;
-import br.com.compasso.productMondDB.controller.repository.ProductRepository;
 
 public class ProductForm {
 	@NotBlank
@@ -37,12 +34,10 @@ public class ProductForm {
 		Double pricedouble =Double.valueOf(price);
 		return new Product(name, description, pricedouble);
 	}
-	public Product atualizar(String id, ProductRepository repository) {
-		Optional<Product> prod = repository.findById(id);
-		prod.get().setName(this.name);
-		prod.get().setDescription(this.description);
-		prod.get().setPrice(Double.valueOf(this.price));
-		repository.save(prod.get());
-		return prod.get();
+	public Product atualizar(Product prod) {
+		prod.setName(this.name);
+		prod.setDescription(this.description);
+		prod.setPrice(Double.valueOf(this.price));
+		return prod;
 	}
 }
